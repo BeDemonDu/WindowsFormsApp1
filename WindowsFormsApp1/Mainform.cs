@@ -17,6 +17,8 @@ namespace WindowsFormsApp1
     {
         private Label labelNew;
         private FormTool formTool;
+        private SkinButton btnSkinButton;
+        private int btnNum;
 
 
         public Mainform()
@@ -97,7 +99,16 @@ namespace WindowsFormsApp1
         private void btn_newBtn_Click(object sender, EventArgs e)
         {
             BtnForm btnForm = new BtnForm();
-            btnForm.Show();
+            btnForm.btnTranlate += new btnTranslateEventHandler(btn_Translate); 
+            btnForm.ShowDialog();
+            SkinButton btnNew = btnSkinButton;
+            skinSplitContainer1.Panel2.Controls.Add(btnNew);
+            DragControlClass obj = new DragControlClass(btnNew);
+        }
+        private void btn_Translate(SkinButton skinButton,int num)
+        {
+            this.btnSkinButton = skinButton;
+            this.btnNum = num;
         }
     }
 }
